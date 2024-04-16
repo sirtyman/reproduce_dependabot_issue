@@ -1,0 +1,17 @@
+version: 2
+
+registries:
+  public-nuget:
+    type: nuget-feed
+    url: https://api.nuget.org/v3/index.json
+
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/reproduce_dependabot_issue"
+    registries:
+      - public-nuget
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
